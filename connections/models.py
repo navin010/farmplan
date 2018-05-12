@@ -40,8 +40,10 @@ class ConnectionTable(models.Model):
     client = models.ForeignKey(ClientTable, on_delete=models.CASCADE)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='awaiting approval')
 
-    def __str__(self):          #diplay object as string
-        return '%s' % (self.user.business_name)
 
     class Meta:
-        unique_together = ('user','message_type','direction','client')
+        unique_together = (('user','message_type','direction','client'))    #prevent duplicates
+
+
+    def __str__(self):          #diplay object as string
+        return '%s' % (self.user)
