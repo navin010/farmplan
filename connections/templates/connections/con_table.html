@@ -11,30 +11,29 @@
 
 
 <div>
-<table class="table">
-<thead>
-      <tr>
-        <th>User</th>
-        <th>Message Type</th>
-        <th>Direction</th>
-        <th>Partner</th>
-        <th>Status</th>
-      </tr>
-</thead>
+    <table class="table">
+        <thead>
+              <tr>
+                <th>User</th>
+                <th>Message Type</th>
+                <th>Direction</th>
+                <th>Partner</th>
+                <th>Status</th>
+              </tr>
+        </thead>
 
-<tbody>
-{% for value in data %}
-    <tr>
-        <td>{{ value.user }}</td>
-        <td>{{ value.message_type }}</td>
-        <td>{{ value.direction }}</td>
-        <td>{{ value.client }}</td>
-        <td>{{ value.status }}</td>
-    </tr>
-{% endfor %}
-</tbody>
-
-</table>
+        <tbody>
+        {% for value in data %}
+            <tr>
+                <td>{{ value.user }}</td>
+                <td>{{ value.message_type }}</td>
+                <td>{{ value.direction }}</td>
+                <td>{{ value.client }}</td>
+                <td>{{ value.status }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}
