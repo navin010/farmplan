@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'accounts.FarmUser'
+AUTH_USER_MODEL = 'accounts.FarmUser'  #changes built in user model to custom model
 
 # Application definition
 
@@ -121,3 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_REDIRECT_URL = '/accounts/'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025

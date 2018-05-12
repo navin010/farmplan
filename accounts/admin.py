@@ -14,7 +14,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = FarmUser
-        fields = ('email', 'gatekeeper_id','business_name','address','town','county','country','post_code','is_active','is_admin')
+        fields = ('email', 'gatekeeper_id','business_name','is_active','is_admin')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -39,15 +39,10 @@ class UserChangeForm(forms.ModelForm):
     password hash display field.
     """
     password = ReadOnlyPasswordHashField()
-    address = forms.CharField(required=False)
-    town = forms.CharField(required=False)
-    county = forms.CharField(required=False)
-    country = forms.CharField(required=False)
-    post_code = forms.CharField(required=False)
 
     class Meta:
         model = FarmUser
-        fields = ('email', 'gatekeeper_id', 'business_name','address','town','county','country','post_code','is_active','is_admin')
+        fields = ('email', 'gatekeeper_id', 'business_name','is_active','is_admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -68,7 +63,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('gatekeeper_id','business_name','address','town','county','country','post_code')}),
+        ('Personal info', {'fields': ('gatekeeper_id','business_name')}),
         ('Permissions', {'fields': ('is_admin','is_active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
