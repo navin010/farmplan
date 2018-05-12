@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from connections.models import ClientTable, ConnectionTable
+from connections.models import ClientTable, ConnectionTable, FarmUser
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -18,7 +18,7 @@ def home(request):
 @login_required
 def table(request):
     #data = ConnectionTable.objects.all()
-    data = request.user.coder.assignments.all()
+    data = ConnectionTable.objects.filter(user=request.user)
     args = {'data': data}
 
     return render(request, 'connections/con_table.html', args)

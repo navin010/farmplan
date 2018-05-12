@@ -9,17 +9,33 @@
 {% block body %}
 <h1>Connections Table</h1>
 
-<h3>Data</h3>
 
+<div>
+<table class="table">
+<thead>
+      <tr>
+        <th>User</th>
+        <th>Message Type</th>
+        <th>Direction</th>
+        <th>Partner</th>
+        <th>Status</th>
+      </tr>
+</thead>
+
+<tbody>
 {% for value in data %}
-    <p>{{ value.user }}</p>
-    <p>{{ value.message_type }}</p>
-    <p>{{ value.direction }}</p>
-    <p>{{ value.client }}</p>
-    <p>{{ value.status }}</p>
-    <br>
+    <tr>
+        <td>{{ value.user }}</td>
+        <td>{{ value.message_type }}</td>
+        <td>{{ value.direction }}</td>
+        <td>{{ value.client }}</td>
+        <td>{{ value.status }}</td>
+    </tr>
 {% endfor %}
+</tbody>
 
+</table>
+</div>
 
 {% endblock %}
 
