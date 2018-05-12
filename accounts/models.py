@@ -81,4 +81,3 @@ class Profile(models.Model):
     country = models.CharField(max_length=30, default='')
     post_code = models.CharField(max_length=10, default='')
 
-
