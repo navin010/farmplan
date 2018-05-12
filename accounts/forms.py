@@ -35,6 +35,7 @@ class EditProfileForm(UserChangeForm):
             'town',
             'county',
             'country',
-            'post_code'
+            'post_code',
+            'password'
         )
 

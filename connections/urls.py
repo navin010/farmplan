@@ -5,6 +5,7 @@ app_name = 'connections'
 
 urlpatterns = [
     re_path(r'^$', views.home, name='home'),
-    re_path(r'^table/$', views.table, name='table'),
+    re_path(r'^show_table/$', views.show_table, name='show_table'),
+    re_path(r'^request_connection/$', views.request_connection, name='request_connection'),
 
 ]

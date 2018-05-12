@@ -35,6 +35,12 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'connections:show_table' %}">View Connections</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'connections:request_connection' %}">Request Connection</a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
                     <li><a href="{% url 'accounts:logout' %}">Logout</a></li>

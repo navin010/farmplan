@@ -9,15 +9,15 @@
 <div class="container">
     <h1>Profile</h1>
 
-    <p>Username: {{ user }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
+    <p>User: {{ user.business_name }}</p>
     <p>Email: {{ user.email }}</p>
+    <p>Gatekeeper ID: {{ user.gatekeeper_id }}</p>
     <br>
-    <p>Description: {{ user.userprofile.description }}</p>
-    <p>City: {{ user.userprofile.city }}</p>
-    <p>Website: {{ user.userprofile.website }}</p>
-    <p>Phone: {{ user.userprofile.phone }}</p>
+    <p>address: {{ user.profile.address }}</p>
+    <p>town: {{ user.profile.town }}</p>
+    <p>county: {{ user.profile.county }}</p>
+    <p>country: {{ user.profile.country }}</p>
+    <p>post_code: {{ user.profile.post_code }}</p>
 
 </div>
 
