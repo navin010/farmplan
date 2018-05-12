@@ -19,7 +19,7 @@ class ConnectionTable(models.Model):
     message_type = models.CharField(max_length=50, default='')
     direction = models.CharField(max_length=50, default='')
     client = models.ForeignKey(ClientTable, on_delete=models.CASCADE)
-    status = models.CharField(max_length=50, default='')
+    status = models.CharField(max_length=50, default='awaiting approval')
 
     def __str__(self):          #diplay object as string
         return '%s' % (self.user.business_name)

@@ -28,7 +28,7 @@ def show_table(request):
 @login_required
 def request_connection(request):
     if request.method == 'POST':
-        form = RequestConnection(request.POST, instance=request.user)
+        form = RequestConnection(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
