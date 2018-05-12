@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+<h1>Home</h1>
+
+{% block head %}
+<title>Connections Home</title>
+{% endblock %}
+
+{% block body %}
+<h1>Connections Table</h1>
+
+<h3>Data</h3>
+
+{% for value in data %}
+    <p>{{ value.user }}</p>
+    <p>{{ value.message_type }}</p>
+    <p>{{ value.direction }}</p>
+    <p>{{ value.client }}</p>
+    <p>{{ value.status }}</p>
+    <br>
+{% endfor %}
+
+
+{% endblock %}
+
+
+
+
