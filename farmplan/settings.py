@@ -33,6 +33,7 @@ AUTH_USER_MODEL = 'accounts.FarmUser'  #changes built in user model to custom mo
 
 INSTALLED_APPS = [
     'accounts',
+    'connections',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
