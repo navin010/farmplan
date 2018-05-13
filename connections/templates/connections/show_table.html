@@ -19,6 +19,8 @@
                 <th>Direction</th>
                 <th>Partner</th>
                 <th>Status</th>
+                <th><!--Edit--></th>
+                <th><!--Delete--></th>
               </tr>
         </thead>
 
@@ -30,6 +32,16 @@
                 <td>{{ value.direction }}</td>
                 <td>{{ value.client }}</td>
                 <td>{{ value.status }}</td>
+                <td>
+                    <a href="#">
+                        <button type="button" class="btn btn-default">Edit</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
