@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from connections.models import ClientTable, ConnectionTable, FarmUser
 from django.contrib.auth.decorators import login_required
 from connections.forms import RequestConnection
+from django.views.generic import UpdateView
+from connections.models import ConnectionTable
+from django import forms
 
 # Create your views here.
 
@@ -28,12 +31,20 @@ def show_table(request):
 @login_required
 def request_connection(request):
     if request.method == 'POST':
-        form = RequestConnection(request.POST)
+        form = RequestConnection(request.user, request.POST)
+        print("hello1")
         if form.is_valid():
+            print("hello")
             instance = form.save(commit=False)
-            instance.user = request.user
             instance.save()
             return redirect('/connections/show_table')
     else:
-        form = RequestConnection(instance=request.user)
+        form = RequestConnection(instance=request.user, user=request.user)
     return render(request, 'connections/request_connection.html', {'form' : form})
+
+
+'''
+class change_connection(UpdateView):
+    model = ConnectionTable
+    fields = ['message_type','direction', 'direction']
+'''
