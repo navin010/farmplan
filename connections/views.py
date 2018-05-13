@@ -32,14 +32,12 @@ def show_table(request):
 def request_connection(request):
     if request.method == 'POST':
         form = RequestConnection(request.user, request.POST)
-        print("hello1")
         if form.is_valid():
-            print("hello")
             instance = form.save(commit=False)
             instance.save()
             return redirect('/connections/show_table')
     else:
-        form = RequestConnection(instance=request.user, user=request.user)
+        form = RequestConnection(request.user)
     return render(request, 'connections/request_connection.html', {'form' : form})
 
 
