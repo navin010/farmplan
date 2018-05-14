@@ -1,0 +1,9 @@
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}                               <!--refers to the tag e.g. success on messages.success-->
+            <div class="alert alert-{{ message.tags }}">    <!--setting bootstap property to variable based on tag, this case success=green in BS-->
+                {{message}}                                 <!--Message text e.g. successfully deleted-->
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
