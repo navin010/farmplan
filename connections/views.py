@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from connections.forms import RequestConnection
 from connections.models import ConnectionTable
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 # Create your views here.
 
@@ -51,3 +52,11 @@ def modify_connection(request,slug):
     else:
         form = RequestConnection(request.user, instance=data)
     return render(request, 'connections/modify_connection.html', {'form' : form})
+
+
+@login_required
+def delete_connection(request,slug):
+    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
+    data.delete()
+    messages.success(request, "Successfully Deleted")
+    return redirect('/connections/show_table')
