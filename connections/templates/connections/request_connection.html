@@ -7,6 +7,11 @@
 {% block body %}
 
 <div class="container">
+    <h1>Request Connection</h1>
+    <br/>
+</div>
+
+<div class="container">
     <form method="post" action="{% url 'connections:request_connection' %}">
         {% csrf_token %}
         {{ form.as_p }}
