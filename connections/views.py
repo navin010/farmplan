@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-from connections.models import ClientTable, ConnectionTable, FarmUser
 from django.contrib.auth.decorators import login_required
 from connections.forms import RequestConnection
-from django.views.generic import UpdateView
 from connections.models import ConnectionTable
-from django import forms
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -41,8 +39,15 @@ def request_connection(request):
     return render(request, 'connections/request_connection.html', {'form' : form})
 
 
-'''
-class change_connection(UpdateView):
-    model = ConnectionTable
-    fields = ['message_type','direction', 'direction']
-'''
+@login_required
+def modify_connection(request,slug):
+    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
+    if request.method == 'POST':
+        form = RequestConnection(request.user, request.POST, instance=data)   #use data from pulled data?
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.save()
+            return redirect('/connections/show_table')
+    else:
+        form = RequestConnection(request.user, instance=data)
+    return render(request, 'connections/modify_connection.html', {'form' : form})

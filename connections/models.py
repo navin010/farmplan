@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import FarmUser
+from django.urls import reverse
 
 # Create your models here.
 
@@ -39,10 +40,14 @@ class ConnectionTable(models.Model):
     direction = models.CharField(max_length=50, choices=DIRECTION_CHOICES, default='')
     client = models.ForeignKey(ClientTable, on_delete=models.CASCADE)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='awaiting approval')
-
+    slug = models.SlugField(max_length=150, unique=True)
 
     class Meta:
         unique_together = (('user','message_type','direction','client'))    #prevent duplicates
+
+
+    def get_absolute_url(self):
+        return reverse('connections:modify_connection', args=[self.slug])  #setup url for object
 
 
     def __str__(self):          #diplay object as string
