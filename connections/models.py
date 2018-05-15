@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import FarmUser
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -45,6 +46,19 @@ class ConnectionTable(models.Model):
     class Meta:
         unique_together = (('user','message_type','direction','client'))    #prevent duplicates
 
+    def _get_unique_slug(self):                                             #increment slug value suffix, as cannot use id value, id value is set after being stored not before
+        slug = slugify(self.user)
+        unique_slug = slug
+        num = 1
+        while ConnectionTable.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+
+    def save(self, *args, **kwargs):
+        self.slug = self._get_unique_slug()
+        super(ConnectionTable, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('connections:modify_connection', args=[self.slug])  #setup url for object
