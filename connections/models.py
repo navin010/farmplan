@@ -45,6 +45,7 @@ class ConnectionTable(models.Model):
 
     class Meta:
         unique_together = (('user','message_type','direction','client'))    #prevent duplicates
+        ordering  = ('client', 'direction')                                 #order by client then direction
 
     def _get_unique_slug(self):                                             #increment slug value suffix, as cannot use id value, id value is set after being stored not before
         slug = slugify(self.user)
