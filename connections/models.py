@@ -8,6 +8,7 @@ from django.template.defaultfilters import slugify
 
 #Client Table
 class ClientTable(models.Model):
+    #user = models.ForeignKey(FarmUser, on_delete=models.CASCADE)
     client_id = models.CharField(max_length=50, default='')
     client_name = models.CharField(max_length=50, default='')
     f4f_code = models.CharField(max_length=50, default='')

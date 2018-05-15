@@ -4,6 +4,7 @@ from connections.forms import RequestConnection
 from connections.models import ConnectionTable
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -43,6 +44,34 @@ def request_connection(request):
 @login_required
 def modify_connection(request,slug):
     data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
+    if request.user == data.user:                         #make sure other users can't modify data related to current user
+        if request.method == 'POST':
+            form = RequestConnection(request.user, request.POST, instance=data)   #use data from pulled data?
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.save()
+                return redirect('/connections/show_table')
+        else:
+            form = RequestConnection(request.user, instance=data)
+        return render(request, 'connections/modify_connection.html', {'form' : form})
+    else:
+        return HttpResponse('<h1>Page not found</h1>')
+
+
+@login_required
+def delete_connection(request,slug):
+    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
+    if request.user == data.user:
+        data.delete()
+        messages.success(request, "Successfully Deleted")
+        return redirect('/connections/show_table')
+    else:
+        return HttpResponse('<h1>Page not found</h1>')
+
+'''
+@login_required
+def approve_connection(request,slug):
+    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
     if request.method == 'POST':
         form = RequestConnection(request.user, request.POST, instance=data)   #use data from pulled data?
         if form.is_valid():
@@ -52,11 +81,4 @@ def modify_connection(request,slug):
     else:
         form = RequestConnection(request.user, instance=data)
     return render(request, 'connections/modify_connection.html', {'form' : form})
-
-
-@login_required
-def delete_connection(request,slug):
-    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
-    data.delete()
-    messages.success(request, "Successfully Deleted")
-    return redirect('/connections/show_table')
+'''
