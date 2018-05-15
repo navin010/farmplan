@@ -68,17 +68,19 @@ def delete_connection(request,slug):
     else:
         return HttpResponse('<h1>Page not found</h1>')
 
-'''
+
 @login_required
 def approve_connection(request,slug):
-    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
-    if request.method == 'POST':
-        form = RequestConnection(request.user, request.POST, instance=data)   #use data from pulled data?
-        if form.is_valid():
-            data = form.save(commit=False)
-            data.save()
-            return redirect('/connections/show_table')
+    data = get_object_or_404(ConnectionTable, slug=slug)    #pull data from db based on unique slug
+    if request.user == data.client:                         #only client can view data
+        if request.method == 'POST':
+            form = RequestConnection(request.user, request.POST, instance=data)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.save()
+                return redirect('/connections/show_table')
+        else:
+            form = RequestConnection(request.user, instance=data)
+        return render(request, 'connections/approve_connection.html', {'form' : form})
     else:
-        form = RequestConnection(request.user, instance=data)
-    return render(request, 'connections/modify_connection.html', {'form' : form})
-'''
+        return HttpResponse('<h1>Page not found</h1>')

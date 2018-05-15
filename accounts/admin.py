@@ -14,7 +14,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = FarmUser
-        fields = ('email', 'gatekeeper_id','business_name','is_active','is_admin')
+        fields = ('email', 'gatekeeper_id','business_name','is_active','is_admin','is_client')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -42,7 +42,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = FarmUser
-        fields = ('email', 'gatekeeper_id', 'business_name','is_active','is_admin')
+        fields = ('email', 'gatekeeper_id', 'business_name','is_active','is_admin','is_client')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -59,12 +59,12 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'business_name','is_active','is_admin')
-    list_filter = ('is_admin',)
+    list_display = ('email', 'business_name','is_active','is_admin','is_client')
+    list_filter = ('is_admin','is_client')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('gatekeeper_id','business_name')}),
-        ('Permissions', {'fields': ('is_admin','is_active')}),
+        ('Permissions', {'fields': ('is_admin','is_active','is_client')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.

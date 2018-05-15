@@ -9,5 +9,6 @@ urlpatterns = [
     re_path(r'^request_connection/$', views.request_connection, name='request_connection'),
     re_path(r'^modify_connection/(?P<slug>[-\w]+)/$', views.modify_connection, name='modify_connection'),
     re_path(r'^delete_connection/(?P<slug>[-\w]+)/$', views.delete_connection, name='delete_connection'),
+    re_path(r'^approve_connection/(?P<slug>[-\w]+)/$', views.approve_connection, name='approve_connection'),
 
 ]
