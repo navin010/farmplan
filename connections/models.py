@@ -37,7 +37,7 @@ class ConnectionTable(models.Model):
     )
 
 
-    user = models.ForeignKey(FarmUser, on_delete=models.CASCADE, limit_choices_to={'is_client': False}, related_name="partner")
+    user = models.ForeignKey(FarmUser, on_delete=models.CASCADE, limit_choices_to={'is_client': False, 'is_admin': False}, related_name="partner")
     message_type = models.CharField(max_length=50, choices=MESSAGE_CHOICES,default='')
     direction = models.CharField(max_length=50, choices=DIRECTION_CHOICES, default='')
     client = models.ForeignKey(FarmUser, on_delete=models.CASCADE, limit_choices_to={'is_client': True}, related_name="client")
@@ -64,6 +64,9 @@ class ConnectionTable(models.Model):
 
     def get_absolute_url(self):
         return reverse('connections:modify_connection', args=[self.slug])  #setup url for object
+
+    def get_absolute_url_approve(self):
+        return reverse('connections:approve_connection', args=[self.slug])  #setup url for object
 
 
     def __str__(self):          #diplay object as string

@@ -17,3 +17,10 @@ class RequestConnection(forms.ModelForm):
             required=True,
             empty_label=None)
 
+
+
+class ApproveConnection(forms.ModelForm):
+
+    class Meta:
+        model = ConnectionTable
+        fields = ['status']

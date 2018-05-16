@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from connections.forms import RequestConnection
+from connections.forms import RequestConnection, ApproveConnection
 from connections.models import ConnectionTable
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -72,17 +72,15 @@ def delete_connection(request,slug):
 @login_required
 def approve_connection(request,slug):
     data = get_object_or_404(ConnectionTable, slug=slug)    #pull data from db based on unique slug
-    print(request.user)
-    print(data.client)
     if request.user == data.client:                         #only client can view data
         if request.method == 'POST':
-            form = RequestConnection(request.user, request.POST, instance=data)
+            form = ApproveConnection(request.POST, instance=data)
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
                 return redirect('/connections/show_table')
         else:
-            form = RequestConnection(request.user, instance=data)
+            form = ApproveConnection(instance=data)
         return render(request, 'connections/approve_connection.html', {'form' : form})
     else:
         return HttpResponse('<h1>Page not found</h1>')
