@@ -20,20 +20,19 @@ def home(request):
 
 #Connection Table
 @login_required
-def show_table(request):
-    #data = ConnectionTable.objects.all()
+def requests_table(request):
     if request.user.is_client:
-        print("client")
-        data = ConnectionTable.objects.filter(client=request.user)
+        data = ConnectionTable.objects.filter(client=request.user, status="awaiting approval")
+        args = {'data': data}
+        return render(request, 'connections/client/requests_table.html', args)
     elif request.user.is_admin:
-        print("admin")
-        data = ConnectionTable.objects.filter(user=request.user)
+        data = ConnectionTable.objects.all()
+        args = {'data': data}
+        return render(request, 'connections/admin/requests_table.html', args)
     else:
-        print("partner")
-        data = ConnectionTable.objects.filter(user=request.user)
-
-    args = {'data': data}
-    return render(request, 'connections/show_table.html', args)
+        data = ConnectionTable.objects.filter(user=request.user, status="awaiting approval")
+        args = {'data': data}
+        return render(request, 'connections/partner/requests_table.html', args)
 
 
 @login_required
