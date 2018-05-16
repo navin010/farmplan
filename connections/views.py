@@ -22,9 +22,17 @@ def home(request):
 @login_required
 def show_table(request):
     #data = ConnectionTable.objects.all()
-    data = ConnectionTable.objects.filter(user=request.user)
-    args = {'data': data}
+    if request.user.is_client:
+        print("client")
+        data = ConnectionTable.objects.filter(client=request.user)
+    elif request.user.is_admin:
+        print("admin")
+        data = ConnectionTable.objects.filter(user=request.user)
+    else:
+        print("partner")
+        data = ConnectionTable.objects.filter(user=request.user)
 
+    args = {'data': data}
     return render(request, 'connections/show_table.html', args)
 
 
