@@ -84,10 +84,10 @@ def request_connection(request):
 
 @login_required
 def modify_connection(request,slug):
-    data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
+    data = get_object_or_404(ConnectionTable, slug=slug)                                         #pull data from db based on unique slug
     if request.user == data.user and data.status == "awaiting approval":                         #make sure other users can't modify data related to current user
         if request.method == 'POST':
-            form = RequestConnection(request.user, request.POST, instance=data)   #use data from pulled data?
+            form = RequestConnection(request.user, request.POST, instance=data)                  #use data from pulled data?
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
@@ -120,8 +120,8 @@ def delete_connection(request,slug):
 
 @login_required
 def approve_connection(request,slug):
-    data = get_object_or_404(ConnectionTable, slug=slug)    #pull data from db based on unique slug
-    if request.user == data.client:                         #only client can view data
+    data = get_object_or_404(ConnectionTable, slug=slug)                    #pull data from db based on unique slug
+    if request.user == data.client:                                         #only client can view data
         if request.method == 'POST':
             form = ApproveConnection(request.POST, instance=data)
             if form.is_valid():

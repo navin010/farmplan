@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb8a7492-71d1-4943-977e-ec45de5e0150" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/connections/templates/connections/client/approved_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/connections/templates/connections/client/approved_table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connections/templates/connections/partner/approved_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/connections/templates/connections/partner/approved_table.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connections/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/connections/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -19,8 +17,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/connections/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="103" column="119" selection-start-line="103" selection-start-column="119" selection-end-line="103" selection-end-column="119" />
+            <state relative-caret-position="1908">
+              <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="57" selection-end-line="106" selection-end-column="57" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -107,10 +105,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="y" value="24" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="355" />
+    <option name="y" value="129" />
     <option name="width" value="960" />
-    <option name="height" value="1009" />
+    <option name="height" value="973" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -232,10 +231,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="960" height="1009" extended-state="4" />
+    <frame x="-1" y="-4" width="1922" height="1038" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2684492" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13231418" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295325" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32839224" />
@@ -243,7 +242,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.3289183" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.19612315" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.18984547" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.12447917" />
@@ -637,8 +636,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/connections/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="103" column="119" selection-start-line="103" selection-start-column="119" selection-end-line="103" selection-end-column="119" />
+        <state relative-caret-position="1908">
+          <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="57" selection-end-line="106" selection-end-column="57" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
