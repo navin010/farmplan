@@ -72,6 +72,8 @@ def delete_connection(request,slug):
 @login_required
 def approve_connection(request,slug):
     data = get_object_or_404(ConnectionTable, slug=slug)    #pull data from db based on unique slug
+    print(request.user)
+    print(data.client)
     if request.user == data.client:                         #only client can view data
         if request.method == 'POST':
             form = RequestConnection(request.user, request.POST, instance=data)

@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify
 
 #Client Table
 class ClientTable(models.Model):
-    #user = models.ForeignKey(FarmUser, on_delete=models.CASCADE)
+    #user = models.ForeignKey(FarmUser, on_delete=models.CASCADE, limit_choices_to={'is_client': True})
     client_id = models.CharField(max_length=50, default='')
     client_name = models.CharField(max_length=50, default='')
     f4f_code = models.CharField(max_length=50, default='')
@@ -37,10 +37,10 @@ class ConnectionTable(models.Model):
     )
 
 
-    user = models.ForeignKey(FarmUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(FarmUser, on_delete=models.CASCADE, limit_choices_to={'is_client': False}, related_name="partner")
     message_type = models.CharField(max_length=50, choices=MESSAGE_CHOICES,default='')
     direction = models.CharField(max_length=50, choices=DIRECTION_CHOICES, default='')
-    client = models.ForeignKey(ClientTable, on_delete=models.CASCADE)
+    client = models.ForeignKey(FarmUser, on_delete=models.CASCADE, limit_choices_to={'is_client': True}, related_name="client")
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='awaiting approval')
     slug = models.SlugField(max_length=150, unique=True)
 
