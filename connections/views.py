@@ -18,7 +18,7 @@ def home(request):
     return render(request, 'connections/home.html', args)
 
 
-#Connection Table
+#Requests Table
 @login_required
 def requests_table(request):
     if request.user.is_client:
@@ -35,6 +35,40 @@ def requests_table(request):
         return render(request, 'connections/partner/requests_table.html', args)
 
 
+#Approved Requests Table
+@login_required
+def approved_table(request):
+    if request.user.is_client:
+        data = ConnectionTable.objects.filter(client=request.user, status="approved")
+        args = {'data': data}
+        return render(request, 'connections/client/approved_table.html', args)
+    elif request.user.is_admin:
+        data = ConnectionTable.objects.all()
+        args = {'data': data}
+        return render(request, 'connections/admin/approved_table.html', args)
+    else:
+        data = ConnectionTable.objects.filter(user=request.user, status="approved")
+        args = {'data': data}
+        return render(request, 'connections/partner/approved_table.html', args)
+
+#Rejected Requests Table
+@login_required
+def rejected_table(request):
+    if request.user.is_client:
+        data = ConnectionTable.objects.filter(client=request.user, status="rejected")
+        args = {'data': data}
+        return render(request, 'connections/client/rejected_table.html', args)
+    elif request.user.is_admin:
+        data = ConnectionTable.objects.all()
+        args = {'data': data}
+        return render(request, 'connections/admin/rejected_table.html', args)
+    else:
+        data = ConnectionTable.objects.filter(user=request.user, status="rejected")
+        args = {'data': data}
+        return render(request, 'connections/partner/rejected_table.html', args)
+
+
+
 @login_required
 def request_connection(request):
     if request.method == 'POST':
@@ -42,7 +76,7 @@ def request_connection(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
-            return redirect('/connections/show_table')
+            return redirect('/connections/requests_table')
     else:
         form = RequestConnection(request.user)
     return render(request, 'connections/request_connection.html', {'form' : form})
@@ -57,7 +91,7 @@ def modify_connection(request,slug):
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
-                return redirect('/connections/show_table')
+                return redirect('/connections/requests_table')
         else:
             form = RequestConnection(request.user, instance=data)
         return render(request, 'connections/modify_connection.html', {'form' : form})
@@ -71,7 +105,7 @@ def delete_connection(request,slug):
     if request.user == data.user:
         data.delete()
         messages.success(request, "Successfully Deleted")
-        return redirect('/connections/show_table')
+        return redirect('/connections/requests_table')
     else:
         return HttpResponse('<h1>Page not found</h1>')
 
@@ -85,7 +119,7 @@ def approve_connection(request,slug):
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
-                return redirect('/connections/show_table')
+                return redirect('/connections/requests_table')
         else:
             form = ApproveConnection(instance=data)
         return render(request, 'connections/approve_connection.html', {'form' : form})
