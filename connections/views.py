@@ -102,7 +102,7 @@ def modify_connection(request,slug):
 @login_required
 def delete_connection(request,slug):
     data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
-    if request.user == data.user:
+    if ((request.user == data.user and data.status == "awaiting approval") or (request.user == data.client and data.status == "approved")):     #current user can delete on awaiting, client can delete on approved and rejected
         data.delete()
         messages.success(request, "Successfully Deleted")
         return redirect('/connections/requests_table')
