@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb8a7492-71d1-4943-977e-ec45de5e0150" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/accounts/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connections/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/connections/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connections/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/connections/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -16,10 +14,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rejected_table.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/connections/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="477">
+              <caret line="87" column="70" selection-start-line="87" selection-start-column="70" selection-end-line="87" selection-end-column="70" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rejected_table.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/connections/templates/connections/partner/rejected_table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
+            <state relative-caret-position="495">
               <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
             </state>
           </provider>
@@ -83,12 +93,12 @@
         <option value="$PROJECT_DIR$/connections/templates/connections/admin/approved_table.html" />
         <option value="$PROJECT_DIR$/connections/templates/connections/client/approved_table.html" />
         <option value="$PROJECT_DIR$/connections/templates/connections/partner/approved_table.html" />
-        <option value="$PROJECT_DIR$/connections/views.py" />
         <option value="$PROJECT_DIR$/connections/urls.py" />
         <option value="$PROJECT_DIR$/connections/templates/connections/admin/rejected_table.html" />
         <option value="$PROJECT_DIR$/connections/templates/connections/client/rejected_table.html" />
         <option value="$PROJECT_DIR$/accounts/templates/base.html" />
         <option value="$PROJECT_DIR$/connections/templates/connections/partner/rejected_table.html" />
+        <option value="$PROJECT_DIR$/connections/views.py" />
       </list>
     </option>
   </component>
@@ -218,8 +228,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="960" height="1009" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2684492" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2684492" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295325" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32839224" />
@@ -227,7 +238,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.3289183" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.19612315" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.19612315" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.12447917" />
@@ -591,16 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/connections/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="55" column="18" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/connections/templates/connections/admin/approved_table.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -624,8 +625,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/connections/templates/connections/partner/rejected_table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
+        <state relative-caret-position="495">
           <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/connections/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="87" column="70" selection-start-line="87" selection-start-column="70" selection-end-line="87" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

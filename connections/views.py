@@ -85,7 +85,7 @@ def request_connection(request):
 @login_required
 def modify_connection(request,slug):
     data = get_object_or_404(ConnectionTable, slug=slug)  #pull data from db based on unique slug
-    if request.user == data.user:                         #make sure other users can't modify data related to current user
+    if request.user == data.user and data.status == "awaiting approval":                         #make sure other users can't modify data related to current user
         if request.method == 'POST':
             form = RequestConnection(request.user, request.POST, instance=data)   #use data from pulled data?
             if form.is_valid():
