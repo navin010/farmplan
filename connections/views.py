@@ -109,11 +109,11 @@ def delete_connection(request,slug):
     elif request.user == data.client and data.status == "approved":
         data.delete()
         messages.success(request, "Successfully Deleted")
-        return redirect('/connections/requests_table')
+        return redirect('/connections/approved_table')
     elif request.user == data.client and data.status == "rejected":
         data.delete()
         messages.success(request, "Successfully Deleted")
-        return redirect('/connections/requests_table')
+        return redirect('/connections/rejected_table')
     else:
         return HttpResponse('<h1>Page not found</h1>')
 
@@ -127,7 +127,12 @@ def approve_connection(request,slug):
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
-                return redirect('/connections/requests_table')
+                if data.status == "approved":
+                    return redirect('/connections/approved_table')
+                elif data.status == "rejected":
+                    return redirect('/connections/rejected_table')
+                else:
+                    return redirect('/connections/requests_table')
         else:
             form = ApproveConnection(instance=data)
         return render(request, 'connections/approve_connection.html', {'form' : form})

@@ -21,6 +21,8 @@ class RequestConnection(forms.ModelForm):
 
 class ApproveConnection(forms.ModelForm):
 
+
     class Meta:
         model = ConnectionTable
         fields = ['status']
+
