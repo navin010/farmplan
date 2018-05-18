@@ -45,9 +45,7 @@ def view_profile(request):
 #Edit Profile
 @login_required
 def edit_profile(request):
-    if request.user.is_client:
-        return HttpResponse('<h1>Page not found</h1>')
-    elif request.user.is_admin:
+    if request.user.is_admin:
         return HttpResponse('<h1>Page not found</h1>')
     else:
         if request.method == 'POST':
