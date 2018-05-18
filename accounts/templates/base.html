@@ -21,46 +21,84 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+
             {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'accounts:home' %}">Farmplan</a>
             {% else %}
                 <a class="navbar-brand" href="{% url 'accounts:login' %}">Farmplan</a>
             {% endif %}
+
           </div>
+
+
           <div id="navbar" class="navbar-collapse collapse">
+
             {% if user.is_authenticated %}
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'accounts:home' %}">Home</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'accounts:view_profile' %}">Profile</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
-                </ul>
-               <ul class="nav navbar-nav">
-                    <li><a href="{% url 'connections:requests_table' %}">Connection Requests</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'connections:approved_table' %}">Approved Requests</a></li>
-                </ul>
-               <ul class="nav navbar-nav">
-                    <li><a href="{% url 'connections:rejected_table' %}">Rejected Requests</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'connections:request_connection' %}">Request Connection</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
-                    <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
-                </ul>
+
+                  {% if user.is_client %}
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'accounts:view_profile' %}">Profile</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+                    </ul>
+                   <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:requests_table' %}">Connection Requests</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:approved_table' %}">Approved Requests</a></li>
+                    </ul>
+                   <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:rejected_table' %}">Rejected Requests</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                    </ul>
+
+                  {% elif user.is_admin %}
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                    </ul>
+
+                  {% else %}
+
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'accounts:view_profile' %}">Profile</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+                    </ul>
+                   <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:requests_table' %}">Connection Requests</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:approved_table' %}">Approved Requests</a></li>
+                    </ul>
+                   <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:rejected_table' %}">Rejected Requests</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'connections:request_connection' %}">Request Connection</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                    </ul>
+
+                  {% endif %}
+
             {% else %}
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'accounts:login' %}">Login</a></li>
                     <li><a href="{% url 'accounts:register' %}">Register</a></li>
                     <li><a href="{% url 'accounts:reset_password' %}">Reset Password</a></li>
                 </ul>
+
             {% endif %}
+
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>

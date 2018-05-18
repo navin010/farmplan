@@ -26,9 +26,7 @@ def requests_table(request):
         args = {'data': data}
         return render(request, 'connections/client/requests_table.html', args)
     elif request.user.is_admin:
-        data = ConnectionTable.objects.all()
-        args = {'data': data}
-        return render(request, 'connections/admin/requests_table.html', args)
+        return HttpResponse('<h1>Page not found</h1>')
     else:
         data = ConnectionTable.objects.filter(user=request.user, status="awaiting approval")
         args = {'data': data}
@@ -43,9 +41,7 @@ def approved_table(request):
         args = {'data': data}
         return render(request, 'connections/client/approved_table.html', args)
     elif request.user.is_admin:
-        data = ConnectionTable.objects.all()
-        args = {'data': data}
-        return render(request, 'connections/admin/approved_table.html', args)
+        return HttpResponse('<h1>Page not found</h1>')
     else:
         data = ConnectionTable.objects.filter(user=request.user, status="approved")
         args = {'data': data}
@@ -59,9 +55,7 @@ def rejected_table(request):
         args = {'data': data}
         return render(request, 'connections/client/rejected_table.html', args)
     elif request.user.is_admin:
-        data = ConnectionTable.objects.all()
-        args = {'data': data}
-        return render(request, 'connections/admin/rejected_table.html', args)
+        return HttpResponse('<h1>Page not found</h1>')
     else:
         data = ConnectionTable.objects.filter(user=request.user, status="rejected")
         args = {'data': data}
@@ -71,16 +65,18 @@ def rejected_table(request):
 
 @login_required
 def request_connection(request):
-    if request.method == 'POST':
-        form = RequestConnection(request.user, request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.save()
-            return redirect('/connections/requests_table')
+    if not request.user.is_client and not request.user.is_admin:
+        if request.method == 'POST':
+            form = RequestConnection(request.user, request.POST)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.save()
+                return redirect('/connections/requests_table')
+        else:
+            form = RequestConnection(request.user)
+        return render(request, 'connections/request_connection.html', {'form' : form})
     else:
-        form = RequestConnection(request.user)
-    return render(request, 'connections/request_connection.html', {'form' : form})
-
+        return HttpResponse('<h1>Page not found</h1>')
 
 @login_required
 def modify_connection(request,slug):
