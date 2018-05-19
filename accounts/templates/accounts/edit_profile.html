@@ -12,7 +12,8 @@
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <br>
+    <p>Raw passwords are not stored, so there is no way to see this user's password, but you can change the password using <a href="{% url 'accounts:change_password' %}">this form</a>.</p>
 </div>
+
 
 {% endblock %}
