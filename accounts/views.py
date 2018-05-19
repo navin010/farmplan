@@ -7,6 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from accounts.models import Profile
 
 #start views here
 
@@ -48,13 +49,14 @@ def edit_profile(request):
     if request.user.is_admin:
         return HttpResponse('<h1>Page not found</h1>')
     else:
+        data = get_object_or_404(Profile, user=request.user)
         if request.method == 'POST':
-            form = EditProfileForm(request.POST, instance=request.user)
+            form = EditProfileForm(request.POST, instance=data)
             if form.is_valid():
                 form.save()
                 return redirect('/accounts/profile')
         else:
-            form = EditProfileForm(instance=request.user)
+            form = EditProfileForm(instance=data)
         return render(request, 'accounts/edit_profile.html', {'form' : form})
 
 #Change Password
