@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models.signals import post_save
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -81,4 +82,12 @@ class Profile(models.Model):
     county = models.CharField(max_length=50, default='')
     country = models.CharField(max_length=30, default='')
     post_code = models.CharField(max_length=10, default='')
+
+
+def create_profile(sender, **kwargs):
+    if kwargs['created']:
+        profile = Profile.objects.create(user=kwargs['instance'])
+
+post_save.connect(create_profile, sender=FarmUser)
+
 

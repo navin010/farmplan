@@ -26,7 +26,7 @@ class RegistrationForm(UserCreationForm):
 
         return user
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
@@ -36,6 +36,6 @@ class EditProfileForm(UserChangeForm):
             'county',
             'country',
             'post_code',
-            'password'
+            #'password'
         )
 
