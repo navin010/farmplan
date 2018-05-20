@@ -124,5 +124,11 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/accounts/'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'f4rmplan@gmail.com'
+EMAIL_HOST_PASSWORD = 'test1234!'
+EMAIL_PORT = 587
+
+# f4rmx1@gmail.com & test1234!
+#

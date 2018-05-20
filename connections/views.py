@@ -5,6 +5,8 @@ from connections.models import ConnectionTable
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -71,6 +73,12 @@ def request_connection(request):
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.save()
+                subject = "Request Has Been Made"
+                message = "A connection request has been made from"
+                from_email = settings.EMAIL_HOST_USER
+                to_list = [str(instance.client)]
+                print(to_list)
+                send_mail(subject,message,from_email, to_list, fail_silently=True)
                 return redirect('/connections/requests_table')
         else:
             form = RequestConnection(request.user)
