@@ -21,7 +21,6 @@
                 <th>Direction</th>
                 <th>Partner</th>
                 <th>Status</th>
-                <th>Delete</th>
               </tr>
         </thead>
 
@@ -33,13 +32,6 @@
                 <td>{{ value.direction }}</td>
                 <td>{{ value.client }}</td>
                 <td>{{ value.status }}</td>
-                <td>
-                    <a href="{% url 'connections:delete_connection' slug=value.slug %}">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
-                    </a>
-                </td>
             </tr>
         {% endfor %}
         </tbody>

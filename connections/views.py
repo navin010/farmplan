@@ -5,8 +5,7 @@ from connections.models import ConnectionTable
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
-from django.conf import settings
-from django.core.mail import send_mail
+from connections.emails import email_modified,email_requested,email_request_response
 
 # Create your views here.
 
@@ -73,18 +72,14 @@ def request_connection(request):
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.save()
-                subject = "Request Has Been Made"
-                message = "A connection request has been made from"
-                from_email = settings.EMAIL_HOST_USER
-                to_list = [str(instance.client)]
-                print(to_list)
-                send_mail(subject,message,from_email, to_list, fail_silently=True)
+                email_requested(instance)
                 return redirect('/connections/requests_table')
         else:
             form = RequestConnection(request.user)
         return render(request, 'connections/request_connection.html', {'form' : form})
     else:
         return HttpResponse('<h1>Page not found</h1>')
+
 
 @login_required
 def modify_connection(request,slug):
@@ -95,6 +90,7 @@ def modify_connection(request,slug):
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
+                email_modified(data)
                 return redirect('/connections/requests_table')
         else:
             form = RequestConnection(request.user, instance=data)
@@ -132,8 +128,10 @@ def approve_connection(request,slug):
                 data = form.save(commit=False)
                 data.save()
                 if data.status == "approved":
+                    email_request_response(data)
                     return redirect('/connections/approved_table')
                 elif data.status == "rejected":
+                    email_request_response(data)
                     return redirect('/connections/rejected_table')
                 else:
                     return redirect('/connections/requests_table')
